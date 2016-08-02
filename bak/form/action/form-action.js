@@ -4,9 +4,7 @@ import constant from '../constant/form-constant';
 
 const afterLoad = createAction(
   constant.ACTION.UPDATE,
-  (data) => {
-    return { state: data || {} };
-  }
+  (data) => { return { state: data || {} }; }
 );
 
 function onLoad() {

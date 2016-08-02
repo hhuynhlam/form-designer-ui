@@ -1,0 +1,27 @@
+{
+  "id": "netflix",
+
+  "fields": [
+    {
+      "id": "field1",
+      "fieldType": "datePicker",
+      "floatingLabelText": "pick a date",
+
+      "publish": {
+        "onChange": {
+          "state": "field1",
+          "value": "self"
+        }
+      }
+    },
+    {
+      "id": "field2",
+      "fieldType": "text",
+      "value": "",
+
+      "subscribe": {
+        "value": "field1"
+      }
+    }
+  ]
+}

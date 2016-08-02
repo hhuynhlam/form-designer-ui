@@ -1,8 +1,10 @@
 import _ from 'lodash';
+import { addPublishers, addSubscribers, fieldLibrary } from '../field';
 import { connect } from 'react-redux';
 import action from '../action/form-action';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import constant from '../constant/form-constant';
-import { addPublishers, addSubscribers, fieldLibrary } from '../field';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import React from 'react';
 
 class Form extends React.Component {
@@ -10,6 +12,10 @@ class Form extends React.Component {
     super(props);
 
     this.props.onLoad();
+  }
+
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +42,10 @@ class Form extends React.Component {
     );
   }
 }
+
+Form.childContextTypes = {
+  muiTheme: React.PropTypes.object.isRequired,
+};
 
 Form.defaultProps = {
   fields: [],

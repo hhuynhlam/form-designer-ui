@@ -6,19 +6,31 @@ export const addPublishers = (field, nextProps, updateState) => {
 
   if (field.publish) {
     _.forIn(field.publish, (body, topic) => {
-      publishers[topic] = (event) => {
+      publishers[topic] = (...args) => {
         let value = body.value;
+        let event;
 
-        if (body.value === 'self') {
-          value = event.target.value;
+        args.forEach((arg) => {
+          if (arg) {
+            event = arg;
+          }
+        });
+
+        if (event && body.value === 'self') {
+          value = _.get(event, 'target.value') || event;
         } else if (guidPattern.test(body.value)) {
           value = nextProps.data[body.value];
         }
 
-        event.preventDefault();
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+
         updateState(`data.${body.state}`, value);
       };
     });
+
+    delete(field.publish);
   }
 
   _.assign(field, publishers);
@@ -31,6 +43,8 @@ export const addSubscribers = (field, props) => {
     _.forIn(field.subscribe, (body, topic) => {
       subscribers[topic] = _.get(props, `data.${body}`);
     });
+
+    delete(field.subscribe);
   }
 
   _.assign(field, subscribers);

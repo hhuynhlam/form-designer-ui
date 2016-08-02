@@ -1,0 +1,33 @@
+{
+  "name": "form-designer-api",
+  "version": "0.1.0",
+  "engines": {
+    "node": "6.3.0"
+  },
+  "scripts": {
+    "eslint": "node_modules/.bin/eslint src/**/*.js",
+    "start": "npm run watch",
+    "watch": "node_modules/.bin/nodemon src/bin/www -w src -e js,json"
+  },
+  "dependencies": {
+    "body-parser": "1.14.2",
+    "debug": "2.2.0",
+    "express": "4.13.3",
+    "lodash": "4.11.1",
+    "mongoose": "4.4.12",
+    "morgan": "1.6.1",
+    "q": "1.4.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "coveralls": "2.11.9",
+    "enzyme": "2.3.0",
+    "eslint": "2.2.0",
+    "eslint-config-airbnb": "6.1.0",
+    "mocha": "2.5.3",
+    "mocha-jsdom": "1.1.0",
+    "nodemon": "1.8.1",
+    "sinon": "1.17.4",
+    "supertest": "1.2.0"
+  }
+}
